@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Projeto Cloud Mackenzie</title></head>
+<body>
+    <h1>Projeto Serviços em Nuvem</h1>
+    <button onclick="buscarDados()">Buscar dados</button>
+    <p id="resultado"></p>
+
+    <script>
+    function buscarDados(){
+        const ip = window.location.hostname;
+        fetch(`http://${ip}:25000/dados`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("resultado").innerText = 
+                    "Mensagem: " + data.mensagem + " | Curso: " + data.curso;
+            })
+            .catch(err => {
+                document.getElementById("resultado").innerText = "Erro ao conectar!";
+            });
+    }
+    </script>
+</body>
+</html>
